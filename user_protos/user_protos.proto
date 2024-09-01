@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/wrappers.proto";
+
+package users;
+
+
+service Users {
+    rpc CreateUser (CreateUserRequest) returns (CreateUserResponse);
+    rpc GetUsers (GetUsersRequest) returns (GetUsersResponse);
+    rpc DeleteUser (DeleteUserRequest) returns (DeleteUserResponse);
+}
+
+
+message User {
+    string id = 1;
+    string name = 2;
+    string surname = 3;
+    google.protobuf.BoolValue is_deleted = 4;
+    google.protobuf.Timestamp created_at = 5;
+}
+
+message CreateUserRequest {
+    string name = 1;
+    string surname = 2;
+}
+
+message GetUsersRequest {}
+
+message DeleteUserRequest {
+    string id = 1;
+}
+
+message CreateUserResponse {
+    User user = 1;
+}
+
+message GetUsersResponse {
+    repeated User users = 1;
+}
+
+message DeleteUserResponse {
+    User user = 1;
+}
