@@ -10,7 +10,9 @@ package users;
 service Users {
     rpc CreateUser (CreateUserRequest) returns (CreateUserResponse);
     rpc GetUsers (GetUsersRequest) returns (GetUsersResponse);
+    rpc GetUserById (GetUserByIdRequest) returns (GetUserByIdResponse);
     rpc DeleteUser (DeleteUserRequest) returns (DeleteUserResponse);
+    rpc GetUsersByIds (GetUsersByIdsRequest) returns (GetUsersByIdsResponse);
 }
 
 
@@ -27,20 +29,36 @@ message CreateUserRequest {
     string surname = 2;
 }
 
-message GetUsersRequest {}
-
-message DeleteUserRequest {
-    string id = 1;
-}
-
 message CreateUserResponse {
     User user = 1;
 }
+
+message GetUsersRequest {}
 
 message GetUsersResponse {
     repeated User users = 1;
 }
 
+message GetUserByIdRequest {
+    string id = 1;
+}
+
+message GetUserByIdResponse {
+    User user = 1;
+}
+
+message DeleteUserRequest {
+    string id = 1;
+}
+
 message DeleteUserResponse {
     User user = 1;
+}
+
+message GetUsersByIdsRequest {
+    repeated string ids = 1;
+}
+
+message GetUsersByIdsResponse {
+    repeated User users = 1;
 }
